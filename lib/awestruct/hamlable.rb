@@ -4,7 +4,10 @@ module Awestruct
     def render(context)
       rendered = ''
       begin
-        haml_engine = Haml::Engine.new( raw_page_content )
+        haml_engine = Haml::Engine.new(
+                                        raw_page_content,
+                                        :filename => ".#{relative_source_path}"
+                                      )
         rendered = haml_engine.render( context )
       rescue => e
         puts e
